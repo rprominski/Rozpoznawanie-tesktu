@@ -18,10 +18,10 @@ public class LetterMatrix {
         this.pathToPatternsFolder = pathToPatternsFolder;
         patterns = new File(pathToPatternsFolder).listFiles();
         matrix = new double[height][weight];
+        generatePattern();
     }
 
     public void generatePattern() {
-        System.out.println(patterns.length);
         for(File pattern : patterns){
             ImageLoader imageLoader = new ImageLoader();
             BufferedImage patternImage = imageLoader.loadImage(pattern.getAbsolutePath());

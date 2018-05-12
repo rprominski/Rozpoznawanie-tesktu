@@ -5,13 +5,10 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class TextRecognition {
-    HashMap alfabet = new HashMap();
-    final String patternsFolder = "C:\\Users\\Rav\\Pictures\\patterns";
+
     public static void main(String args[]) {
-
+        PatternGenerator patternGenerator = new PatternGenerator();
+        patternGenerator.generateAllPatterns();
     }
 
-    public void generateAllPatterns(){
-
-    }
 }
