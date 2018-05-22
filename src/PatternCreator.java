@@ -1,23 +1,25 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+
+import static javax.swing.GroupLayout.Alignment.CENTER;
 
 public class PatternCreator extends JFrame {
 
+    JButton save = new JButton("save");
+    JButton load = new JButton("load");
+    JButton clear = new JButton("clear");
+    JButton chooseFolder = new JButton("choose folder");
+    JTextField path = new JTextField("Wybierz folder do zapisu");
+    PaintingField paintingField = new PaintingField();
+
     public PatternCreator(){
-        JButton jButton = new JButton("wybierz folder");
-        JButton jButton2 = new JButton("zapisz");
-        jButton.addActionListener((ActionEvent event)->{
-
-        });
-
+        createLayout();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        createLayour(jButton,jButton2);
         setLocationRelativeTo(null);
-
+        setVisible(true);
     }
 
-    public void createLayour(JComponent... components){
+    public void createLayout(){
         JPanel pane = (JPanel) getContentPane();
         GroupLayout groupLayout = new GroupLayout(pane);
         pane.setLayout(groupLayout);
@@ -25,15 +27,27 @@ public class PatternCreator extends JFrame {
         groupLayout.setAutoCreateContainerGaps(true);
         groupLayout.setAutoCreateGaps(true);
 
-        groupLayout.setHorizontalGroup(groupLayout.createParallelGroup()
+        groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(CENTER)
                 .addGroup(groupLayout.createSequentialGroup()
-                    .addComponent(components[0])
-                    .addComponent(components[1]))
+                        .addComponent(save)
+                        .addComponent(load)
+                        .addComponent(clear)
+                        .addComponent(chooseFolder))
+                .addGroup(groupLayout.createSequentialGroup()
+                        .addComponent(paintingField,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE))
+                .addGroup(groupLayout.createSequentialGroup()
+                        .addComponent(path))
         );
         groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
                 .addGroup(groupLayout.createParallelGroup()
-                .addComponent(components[0])
-                .addComponent(components[1]))
+                        .addComponent(save)
+                        .addComponent(load)
+                        .addComponent(clear)
+                        .addComponent(chooseFolder))
+                .addGroup(groupLayout.createParallelGroup()
+                        .addComponent(paintingField,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE))
+                .addGroup(groupLayout.createParallelGroup()
+                        .addComponent(path))
         );
 
         pack();
