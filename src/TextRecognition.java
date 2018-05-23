@@ -10,7 +10,6 @@ public class TextRecognition {
     public static void main(String args[]) {
         EventQueue.invokeLater(() -> {
             PatternCreator patternCreator = new PatternCreator();
-
         });
     }
 
