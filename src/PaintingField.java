@@ -58,6 +58,9 @@ public class PaintingField extends JPanel implements MouseMotionListener {
 
     public void setImage(Image image) {
         this.image = image;
+        g2D = (Graphics2D) image.getGraphics();
+        g2D.setPaint(Color.black);
+        g2D.setStroke(new BasicStroke(5));
         repaint();
     }
 }
