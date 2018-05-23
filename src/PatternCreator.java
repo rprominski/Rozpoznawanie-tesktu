@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,7 @@ public class PatternCreator extends JFrame implements ActionListener{
     JButton chooseFolder = new JButton("choose folder");
     JTextField path = new JTextField("Choose folder where save image");
     PaintingField paintingField = new PaintingField();
+    File selectedFile;
 
     public PatternCreator(){
         save.addActionListener(this);
@@ -69,18 +71,48 @@ public class PatternCreator extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == save){
-            ImageLoader.saveImage("C:\\Users\\Rav\\Desktop\\saved.jpg",paintingField.getImage());
+        if(e.getSource() == save) {
+            if(path.getText() != "Choose folder where save image"){
+                ImageLoader.saveImage(path.getText(),paintingField.getImage());
+                path.setText(getNextFreeNameInFolder(selectedFile.getAbsolutePath()));
+                paintingField.clear();
+            }
+
+        }
+        if(e.getSource() == load) {
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.setCurrentDirectory(new java.io.File("."));
+            jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png"));
+
+            if(jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                paintingField.setImage(ImageLoader.loadImage(jFileChooser.getSelectedFile().getAbsolutePath()));
+                path.setText(jFileChooser.getSelectedFile().getAbsolutePath());
+            }
+        }
+        if(e.getSource() == clear) {
             paintingField.clear();
         }
-        if(e.getSource() == load){
-           // paintingField.setImage(ImageLoader.loadImage("C:\\Users\\Rav\\Desktop\\saved.png"));
+        if(e.getSource() == chooseFolder) {
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.setCurrentDirectory(new java.io.File("."));
+            jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            if(jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                selectedFile = jFileChooser.getSelectedFile();
+                path.setText(getNextFreeNameInFolder(selectedFile.getAbsolutePath()));
+            }
         }
-        if(e.getSource() == clear){
-            paintingField.clear();
+    }
+
+    public String getNextFreeNameInFolder(String folder){
+        for(int i = 1; i < 1000000; i++){
+            String newName = new String( folder + "\\" + Integer.toString(i) + ".jpg");
+            File file = new File(newName);
+
+            if(!file.exists()){
+                return newName;
+            }
         }
-        if(e.getSource() == chooseFolder){
-            System.out.println("chooseFolder");
-        }
+        return "You have 1 million patterns. REALLY want more?";
     }
 }
