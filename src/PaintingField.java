@@ -9,7 +9,7 @@ public class PaintingField extends JPanel implements MouseMotionListener {
     Image image;
     Graphics2D g2D;
     public PaintingField(){
-        setPreferredSize((new Dimension(500,500)));
+        setPreferredSize((new Dimension(100,100)));
         addMouseMotionListener(this);
     }
 
@@ -49,5 +49,15 @@ public class PaintingField extends JPanel implements MouseMotionListener {
         g2D.fillRect(0, 0,getSize().width, getSize().height);
         g2D.setPaint(Color.black);
         g2D.setStroke(new BasicStroke(5));
+        repaint();
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+        repaint();
     }
 }
