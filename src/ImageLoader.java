@@ -5,18 +5,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageLoader {
-    public static BufferedImage loadImage(String path){
+    public static BufferedImage loadImage(String path) {
         BufferedImage image=null;
         try {
             image = ImageIO.read(new File(path));
-        } catch(IOException ex){
+        } catch(IOException ex) {
 
         }
         return image;
     }
 
     public static Boolean saveImage(String path, Image image){
-        try{
+        try {
             BufferedImage bufferedImage = (BufferedImage) image;
             File outputfile = new File(path);
             ImageIO.write(bufferedImage,"jpg",outputfile);
