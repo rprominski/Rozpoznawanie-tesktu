@@ -1,15 +1,16 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.*;
 
 public class TextRecognition {
 
     public static void main(String args[]) {
         EventQueue.invokeLater(() -> {
-            PatternCreator patternCreator = new PatternCreator();
+            String path = "C:\\Users\\Rav\\Desktop\\M";
+            TextRecognizer textRecognizer = new TextRecognizer();
+            for(File folder : new File(path).listFiles()) {
+            System.out.println(folder.getName() + " " + textRecognizer.recognize(ImageLoader.loadImage(path + "\\"+folder.getName())));
+            }
         });
     }
 
