@@ -18,15 +18,18 @@ public class PatternCreator extends JFrame implements ActionListener{
     JButton load = new JButton("load");
     JButton clear = new JButton("clear");
     JButton chooseFolder = new JButton("choose folder");
-    JTextField path = new JTextField("Choose folder where save image");
+    JTextField path;
     PaintingField paintingField = new PaintingField();
     File selectedFile;
+    String patternsFolder;
 
-    public PatternCreator(){
+    public PatternCreator(String patternsFolder){
+        this.patternsFolder = patternsFolder;
         save.addActionListener(this);
         load.addActionListener(this);
         clear.addActionListener(this);
         chooseFolder.addActionListener(this);
+        path = new JTextField(new java.io.File(patternsFolder).getAbsolutePath());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -81,7 +84,7 @@ public class PatternCreator extends JFrame implements ActionListener{
         }
         if(e.getSource() == load) {
             JFileChooser jFileChooser = new JFileChooser();
-            jFileChooser.setCurrentDirectory(new java.io.File("."));
+            jFileChooser.setCurrentDirectory(new java.io.File(patternsFolder));
             jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png"));
 
             if(jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -94,7 +97,7 @@ public class PatternCreator extends JFrame implements ActionListener{
         }
         if(e.getSource() == chooseFolder) {
             JFileChooser jFileChooser = new JFileChooser();
-            jFileChooser.setCurrentDirectory(new java.io.File("."));
+            jFileChooser.setCurrentDirectory(new java.io.File(patternsFolder));
             jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
             if(jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
