@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-//ImageLoader.loadImage("C:\\Users\\Rav\\Desktop\\M\\2.jpg"
+
 public class TextRecognizer {
     HashMap<String, Pattern> patterns;
 
-    public TextRecognizer() {
-        PatternGenerator patternGenerator = new PatternGenerator();
+    public TextRecognizer(String patternsFolderPath) {
+        PatternGenerator patternGenerator = new PatternGenerator(patternsFolderPath);
         patterns = patternGenerator.generateAllPatterns();
     }
 

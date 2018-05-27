@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PatternGenerator {
-    private static final String patternsFolderPath = "C:\\Users\\Rav\\Pictures\\patterns" ;
+    String patternsFolderPath;
 
     public HashMap<String, Pattern> generateAllPatterns(){
         HashMap<String, Pattern> alfabet=new HashMap<String, Pattern>();
@@ -20,5 +20,13 @@ public class PatternGenerator {
            // System.out.println(it.getKey()+" "+it.getValue());
         }
         return alfabet;
+    }
+
+    public PatternGenerator(String patternsFolderPath) {
+        this.patternsFolderPath = patternsFolderPath;
+    }
+
+    public void setPatternsFolderPath(String patternsFolderPath) {
+        this.patternsFolderPath = patternsFolderPath;
     }
 }
