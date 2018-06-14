@@ -5,9 +5,14 @@ import java.util.*;
 public class TextRecognition {
 
     public static void main(String args[]) {
+        if(args.length == 0) {
+            EventQueue.invokeLater(() -> {
+                RecognizeWindow recognizeWindow = new RecognizeWindow();
+            });
+            return;
+        }
         if(args[0].equals("create")) {
             EventQueue.invokeLater(() -> {
-
                     String patternsFolderPath = (args.length>1 ? args[1] : "patterns");
                     PatternCreator patternCreator = new PatternCreator(patternsFolderPath);
             });
