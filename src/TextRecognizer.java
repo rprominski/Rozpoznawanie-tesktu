@@ -24,11 +24,11 @@ public class TextRecognizer {
 
         Collections.sort(similarities,new PercentageSimilarityComparatorByTestedImage());
 
-        int candidats = 3;
+        int candidats = 5;
         similarities = new ArrayList<>(similarities.subList(0,candidats));
 
         Collections.sort(similarities,new PercentageSimilarityComparatorByPatternImage());
 
-        return similarities.get(0).patternName;
+        return similarities.get(0).patternName+" "+similarities.get(1).patternName+" "+similarities.get(2).patternName+" "+similarities.get(3).patternName+" "+similarities.get(4).patternName;
     }
 }
